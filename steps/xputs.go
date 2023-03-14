@@ -122,20 +122,21 @@ func CollectXPuts(models []models.EnvironmentItemModel) []XPut {
 
 	for index, model := range models {
 		var identifier string
-		var value any
+		var putValue any
 
 		for key, value := range model {
 			if key == "opts" {
 				options = gatherOptions(value)
 			} else {
 				identifier = key
+				putValue = value
 			}
 		}
 
 		output[index] = XPut{
 			Identifier: identifier,
 			Options:    options,
-			Value:      value,
+			Value:      putValue,
 		}
 	}
 
